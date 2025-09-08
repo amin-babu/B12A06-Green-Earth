@@ -22,12 +22,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <style>
-    * {
-      font-family: "Inter", sans-serif;
-    }
-  </style>
 </head>
 
 <body>
@@ -53,21 +47,37 @@
   <main class="bg-[#f0fdf4]">
     <!-- Choose your Trees Section -->
     <h2 class="text-center pt-16 font-semibold text-3xl">Choose Your Trees</h2>
-    <section class="w-11/12 mx-auto py-12 grid grid-cols-12 gap-2">
+    <section class="w-11/12 mx-auto py-12 grid grid-cols-12 gap-3">
 
       <!-- Categories Button -->
       <div class="col-span-2">
         <h5 class="mb-2 font-semibold text-lg">Categories</h5>
         <div id="categories">
-          
+
         </div>
       </div>
 
       <!-- Card Section -->
-      <div id="card-container" class="col-span-8 grid grid-cols-3 gap-3 items-stretch">
-        
+      <div id="card-container" class="col-span-8 grid grid-cols-3 gap-3">
+
       </div>
-      <div class="col-span-2 bg-green-200"></div>
+
+      <div class="col-span-2 bg-white rounded-lg p-2">
+        <h3 class="text-xl font-semibold">Your Cart</h3>
+
+        <div class="flex items-center bg-[#f0fdf4] py-1 px-2 justify-between mt-2 rounded-lg">
+          <div>
+            <h5 class="font-semibold text-[#1F2937] text-base mb-1">Mango Tree</h5>
+            <p class="font-light text-[#1F2937]">৳500</p>
+          </div>
+          <img class="cursor-pointer" src="./assets/close.png" alt="">
+        </div>
+
+        <div class="flex items-center justify-between mt-2 py-2 border-t border-dotted border-[#1F2937]">
+          <h4 class="text-lg font-medium">Total:</h4>
+          <p class="text-base font-medium">৳<span>5000</span></p>
+        </div>
+      </div>
     </section>
   </main>
 
