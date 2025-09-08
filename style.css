@@ -8,3 +8,8 @@
 .card .card-body p {
   font-size: 12px;
 }
+
+.active {
+  background-color: #15803D;
+  color: white;
+}
