@@ -2,11 +2,13 @@
   font-family: "Inter", sans-serif;
 }
 
-.banner {
-  background-image: url('./assets/hero-leaf1.png'), url('./assets/hero-leaf2.png');
-  background-repeat: no-repeat;
-  background-position: left bottom, right bottom;
-  background-size: 420px;
+@media (min-width:786px) {
+  .banner {
+    background-image: url('./assets/hero-leaf1.png'), url('./assets/hero-leaf2.png');
+    background-repeat: no-repeat;
+    background-position: left bottom, right bottom;
+    background-size: 420px;
+  }
 }
 
 .active {

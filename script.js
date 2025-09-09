@@ -7,7 +7,7 @@ const loadCategories = () => {
 }
 
 // calling load categories function to load categories data
-//loadCategories();
+loadCategories();
 
 // Removing active class from every categories
 const removeActive = () => {
@@ -20,7 +20,7 @@ const displayCategories = (categories) => {
   const caregoriesContainer = document.getElementById('categories');
   categories.forEach(categorieInfo => {
     caregoriesContainer.innerHTML += `
-    <button id="menu-btn-${categorieInfo.id}" onclick="loadPlantCardData(${categorieInfo.id})" class="btn w-full justify-start p-3 bg-[#f0fdf4] text-black border-0 shadow-none font-normal hover:bg-[#15803D] hover:text-white">${categorieInfo.category_name}</button>
+    <button id="menu-btn-${categorieInfo.id}" onclick="loadPlantCardData(${categorieInfo.id})" class="btn md:w-full justify-start p-3 bg-[#f0fdf4] text-black border-0 shadow-none font-normal hover:bg-[#15803D] hover:text-white">${categorieInfo.category_name}</button>
   `;
   })
 }
@@ -28,7 +28,9 @@ const displayCategories = (categories) => {
 // fetching All cards/plants data
 const loadAllCardData = () => {
   const url = `https://openapi.programming-hero.com/api/plants`;
-  fetch(url).then(res => res.json()).then(data => displayAllPlants(data.plants));
+  fetch(url).then(res => res.json()).then(data => {
+    displayAllPlants(data.plants);
+  });
 }
 
 // Displaying All cards/plants to UI
@@ -36,7 +38,7 @@ const displayAllPlants =  (plants) => {
   const cardContainer = document.getElementById('card-container');
   plants.forEach(plant => {
     cardContainer.innerHTML += `
-      <div class="card bg-base-100 shadow-sm p-4 h-auto">
+        <div class="card bg-base-100 shadow-sm p-4 h-auto">
           <figure>
             <img class="w-full rounded-lg h-[185px] object-cover"
               src="${plant.image}"
@@ -48,11 +50,12 @@ const displayAllPlants =  (plants) => {
             <div class="flex justify-between">
               <div class="badge badge-soft badge-success bg-[#DCFCE7] text-[#15803D] rounded-xl font-semibold">Fruit
                 Tree</div>
-              <button class=""><i class="fa-solid fa-bangladeshi-taka-sign"></i><span
+              <button id="tree-price-${plant.id}" class=""><i class="fa-solid fa-bangladeshi-taka-sign"></i><span
                   class="font-semibold">${plant.price}</span></button>
             </div>
             <div class="card-actions">
-              <button
+              <button id="add-tocart-btn${plant.id}" 
+                onclick="loadBalanceData(${plant.id}); loadTotalBalance(${plant.id});"
                 class="btn btn-primary shadow-none border-0 w-full rounded-3xl bg-[#15803D] font-medium text-white mt-1">Add
                 to Cart</button>
             </div>
@@ -62,7 +65,40 @@ const displayAllPlants =  (plants) => {
   })
 }
 
-//loadAllCardData();
+loadAllCardData();
+
+const loadBalanceData = (id) => {
+  const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+  fetch(url).then(res => res.json()).then(data => cartBalance(data.plants));
+}
+
+const cartBalance = (plant) => {
+  const cartBalanceContainer = document.getElementById('cart-balance-container');
+  cartBalanceContainer.innerHTML += `
+    <div id="cart-info-${plant.id}" class="flex items-center bg-[#f0fdf4] py-1 px-2 justify-between mt-2 rounded-lg">
+      <div>
+        <h5 class="font-semibold text-[#1F2937] text-base mb-1">${plant.name}</h5>
+        <p class="font-light text-[#1F2937]">৳<span>${plant.price}</span></p>
+      </div>
+      <img onclick="removeCartInfo(${plant.id})" class="cursor-pointer" src="./assets/close.png" alt="">
+    </div>
+  `;
+}
+
+const removeCartInfo = id => {
+  const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+  fetch(url).then(res => res.json()).then(data => minusRemovePlantBalance(data.plants));
+  const cartBalanceContainer = document.getElementById('cart-balance-container');
+  const cartInfo = document.getElementById(`cart-info-${id}`);
+  cartBalanceContainer.removeChild(cartInfo);
+};
+
+const minusRemovePlantBalance = plant => {
+  let cartBalance = parseInt(document.getElementById('cart-total-balance').innerText);
+  let treePrice = plant.price;
+  let cartUpadatedBalance = cartBalance - treePrice;
+  document.getElementById('cart-total-balance').innerText = cartUpadatedBalance;
+}
 
 // fetching plant card data
 const loadPlantCardData = (id) => {
@@ -98,7 +134,7 @@ const displayPlantCard = (plantData) => {
                   class="font-semibold">${plant.price}</span></button>
             </div>
             <div class="card-actions">
-              <button
+              <button onclick="loadTotalBalance(${plant.id}); loadBalanceData(${plant.id})"
                 class="btn btn-primary shadow-none border-0 w-full rounded-3xl bg-[#15803D] font-medium text-white mt-1">Add
                 to Cart</button>
             </div>
@@ -106,4 +142,16 @@ const displayPlantCard = (plantData) => {
         </div>
     `;
   });
+}
+
+const loadTotalBalance = id => {
+  const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+  fetch(url).then(res => res.json()).then(data => cartTotalBalance(data.plants));
+};
+
+const cartTotalBalance = plant => {
+  let cartBalance = parseInt(document.getElementById('cart-total-balance').innerText);
+  let treePrice = plant.price;
+  let cartUpadatedBalance = cartBalance + treePrice;
+  document.getElementById('cart-total-balance').innerText = cartUpadatedBalance;
 }
