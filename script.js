@@ -48,8 +48,7 @@ const displayAllPlants =  (plants) => {
             <h2 class="card-title text-base">${plant.name}</h2>
             <p class="text-sm">${plant.description}</p>
             <div class="flex justify-between">
-              <div class="badge badge-soft badge-success bg-[#DCFCE7] text-[#15803D] rounded-xl font-semibold">Fruit
-                Tree</div>
+              <div class="badge badge-soft badge-success bg-[#DCFCE7] text-[#15803D] rounded-xl font-semibold">${plant.category}</div>
               <button id="tree-price-${plant.id}" class=""><i class="fa-solid fa-bangladeshi-taka-sign"></i><span
                   class="font-semibold">${plant.price}</span></button>
             </div>
@@ -65,7 +64,7 @@ const displayAllPlants =  (plants) => {
   })
 }
 
-loadAllCardData();
+//loadAllCardData();
 
 const loadBalanceData = (id) => {
   const url = `https://openapi.programming-hero.com/api/plant/${id}`;
@@ -128,8 +127,7 @@ const displayPlantCard = (plantData) => {
             <h2 class="card-title text-base">${plant.name}</h2>
             <p class="text-sm">${plant.description}</p>
             <div class="flex justify-between">
-              <div class="badge badge-soft badge-success bg-[#DCFCE7] text-[#15803D] rounded-xl font-semibold">Fruit
-                Tree</div>
+              <div class="badge badge-soft badge-success bg-[#DCFCE7] text-[#15803D] rounded-xl font-semibold">${plant.category}</div>
               <button class=""><i class="fa-solid fa-bangladeshi-taka-sign"></i><span
                   class="font-semibold">${plant.price}</span></button>
             </div>
