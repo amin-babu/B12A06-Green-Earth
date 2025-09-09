@@ -34,7 +34,7 @@ const loadAllCardData = () => {
 }
 
 // Displaying All cards/plants to UI
-const displayAllPlants =  (plants) => {
+const displayAllPlants = (plants) => {
   const cardContainer = document.getElementById('card-container');
   plants.forEach(plant => {
     cardContainer.innerHTML += `
@@ -54,14 +54,14 @@ const displayAllPlants =  (plants) => {
             </div>
             <div class="card-actions">
               <button id="add-tocart-btn${plant.id}" 
-                onclick="loadBalanceData(${plant.id}); loadTotalBalance(${plant.id});"
+                onclick="loadBalanceData(${plant.id}); loadTotalBalance(${plant.id}); alert('${plant.name} added to cart');"
                 class="btn btn-primary shadow-none border-0 w-full rounded-3xl bg-[#15803D] font-medium text-white mt-1">Add
                 to Cart</button>
             </div>
           </div>
         </div>
     `;
-  })
+  });
 }
 
 loadAllCardData();
@@ -128,6 +128,7 @@ const minusRemovePlantBalance = plant => {
 
 // fetching plant card data
 const loadPlantCardData = (id) => {
+  manageSpinner(true);
   const url = `https://openapi.programming-hero.com/api/category/${id}`;
   fetch(url).then(res => res.json()).then(data => {
     removeActive();
@@ -159,7 +160,7 @@ const displayPlantCard = (plantData) => {
                   class="font-semibold">${plant.price}</span></button>
             </div>
             <div class="card-actions">
-              <button onclick="loadTotalBalance(${plant.id}); loadBalanceData(${plant.id})"
+              <button onclick="loadTotalBalance(${plant.id}); loadBalanceData(${plant.id}); alert('${plant.name} added to cart');"
                 class="btn btn-primary shadow-none border-0 w-full rounded-3xl bg-[#15803D] font-medium text-white mt-1">Add
                 to Cart</button>
             </div>
@@ -167,6 +168,7 @@ const displayPlantCard = (plantData) => {
         </div>
     `;
   });
+  manageSpinner(false);
 }
 
 const loadTotalBalance = id => {
@@ -179,4 +181,16 @@ const cartTotalBalance = plant => {
   let treePrice = plant.price;
   let cartUpadatedBalance = cartBalance + treePrice;
   document.getElementById('cart-total-balance').innerText = cartUpadatedBalance;
+}
+
+const manageSpinner = status => {
+  if (status) {
+    document.getElementById('spinner').classList.remove('hidden');
+    document.getElementById('spinner').classList.add('flex');
+    document.getElementById('choose-tree-container').classList.add('hidden');
+  } else {
+    document.getElementById('spinner').classList.add('hidden');
+    document.getElementById('spinner').classList.remove('flex');
+    document.getElementById('choose-tree-container').classList.remove('hidden');
+  }
 }
