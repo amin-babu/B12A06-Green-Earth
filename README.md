@@ -1,165 +1,17 @@
-## WELCOME TO ( সহজ সরল সিম্পল ) ASSIGNMENT-006
+1) What is the difference between var, let, and const?
+1. Answer = Before ES6 JS provided var keyword and only has Global and Function scope. From ES6 JS introduced let and const keyword. They prodive block scope in JavaScript. Var can redeclare and reassign. Var prodives Global and Function scope. Var is hoisted and assign undefined data. The let variable can not be redeclared, But can reassign. let prodives block scope and also prodives function scope. Let is hoisted but doesn't define any data. Const can not redeclare and reassign. Must be assigned after declaration. Const prodives block scope and also prodives function scope. It is used for array, objects, function, regexp. Const is hoisted but doesn't define any data.
 
-### 📅 Deadline For 60 marks: 9th September, 2025 (11:59 pm ⏱️)
 
-### 📅 Deadline For 50 marks : 13th September , 2025 (6:00 pm⏱️)
+2) What is the difference between map(), forEach(), and filter()?
+2. Answer = map(callback) -> runs the given function for every item in the array and returns a new array with the results, without changing the original array. The callback function takes (value, index, array) as parameters. 
+forEach(callback) -> runs the given function once for every item in the array, in order, without returning a new array. The callback function takes (value, index, array) as parameters.
+filter(callback) -> keeps only the items that match the condition and returns them in a new array without changing the original array. The callback function takes (value, index, array) as parameters.
 
-### 📅 Deadline For 30 marks: Any time after 13the September , 2025 (6:01 pm⏱️).
+3) What are arrow functions in ES6?
+3. Answer = Arrow functions are a shorter, cleaner way to write functions in ES6. They use the => syntax instead of the function keyword. The main difference between arrow function and normal fucntion is Normal function → this works from the object. Arrow function → this comes from outside the object. in arrow function no need to write function or return (for single-expression functions)
 
----
-# Green Earth
+4) How does destructuring assignment work in ES6?
+4. Destructuring in ES6 is a quick way to take values from an array or object and put them into variables. Example: [a, b] = [1, 2] gives a = 1 and b = 2. For objects, {name, age} = user takes the name and age from the object. You can also give default values, skip items, or take the rest of the data. It makes code shorter and easier to read.
 
-
-## Private Repository: https://classroom.github.com/a/nVZrg5R9
-
-
----
-🌴 API Endpoints
----
-1. Get 🌴All Plants
-```bash
-https://openapi.programming-hero.com/api/plants
-```
-
-2. Get 🌴All categories <br/>
-```bash
-https://openapi.programming-hero.com/api/categories
-```
-
-
-3. Get 🌴plants by categories <br/>
-```bash
-https://openapi.programming-hero.com/api/category/${id}
-```
-
-```bash
-https://openapi.programming-hero.com/api/category/1
-```
-
-4. Get 🌴Plants Detail <br/>
-
-```bash
-https://openapi.programming-hero.com/api/plant/${id}
-```
-
-```bash
-https://openapi.programming-hero.com/api/plant/1
-```
----
-
-
-
-
-## ✅ Main Requirements 
-
-#### 1) Navbar
-
-- Website **logo/name** on the **left**  
-- **Menu items** in the **center** 
-- **Plant a Tree button** on the **right** 
-
-#### 2) Banner 
-- A **background image**  
-- A **title** and **subtitle**  
-- A **centered button**  
-
-#### 3) About Campaign
-- **Section heading**  
-- **Image on the left**, **text on the right**  
-
-#### 4) Our Impact Section 
-- Show **3 cards** with campaign **statistics**  
-
-#### 5) Plant a Tree Today Section & Footer
-- **Form**: Name, Email, Number of Trees  
-- **Footer** with copyright info 
-
-#### 6) Responsiveness 
-- Website must be **mobile responsive**  
-
----
-#### 7) Create a README file to answer the following question-
-
-
-#### 1) What is the difference between var, let, and const?
-
-#### 2) What is the difference between map(), forEach(), and filter()? 
-
-#### 3) What are arrow functions in ES6?
-
-#### 4) How does destructuring assignment work in ES6?
-
-#### 5) Explain template literals in ES6. How are they different from string concatenation?
-
-## ⚙️ Functionalities 
-
-1) Category Loading 
-Load Tree Categories dynamically on the left side.
-
-2) Category Click → Tree Data 
-On clicking a category: load trees of that category.
-
-Display in a 3-column card layout.
-
-3) Card Contents 
- Each card includes:
-
-        - Image
-
-        -  Name
-
-        - Short description
-
-        - Category
-
-        - Price
-
-        - Add to Cart button
-
-4) Modal on Card Click 
-Clicking a tree name on a card opens a modal with full tree details.
-
-
-##  🧪 Challenges 
-
-
-    1) Add to Cart 
-    Clicking Add to Cart: - Adds the tree to Cart List
-                          - Shows tree name 
-
-    2) Total Calculation 
-    Calculate total price of trees in cart.
-
-    3) Remove from Cart 
-    Clicking ❌ removes tree and deducts price from total.
-
-    4) Loading Spinner
-    Show spinner while data is loading.
-
-    5) Active Button State 
-    Highlight active category button when selected.
-
-
-
-🧰 Technology Stack:
-        
-        HTML
-
-        CSS (Vanilla / Tailwind / DaisyUI)
-
-        JavaScript (Vanilla only, no frameworks)
-
-📌 Rules
-✅ At least 5 meaningful commits
-
-❌ No dummy text or Lorem Ipsum — must use relevant content
-
-
-
-
-
-## 🔗 Submission
-- **Live Link :** YOUR_DEPLOYED_URL_HERE  
-- **GitHub Private Repository:** YOUR_REPO_URL_HERE  
-
----
+5) Explain template literals in ES6. How are they different from string concatenation?
+5. Template literals in ES6 are a new way to write strings using backticks (``) instead of quotes. They make it easy to join variables and text without using +. Inside a template literal, you can put variables or expressions using ${ }. For example, `Hello, ${name}` will show the value of name. They are also useful for writing multi-line strings directly, which normal quotes cannot do easily. Compared to string concatenation, template literals are shorter, cleaner, and easier to read.
