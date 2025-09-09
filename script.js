@@ -45,7 +45,7 @@ const displayAllPlants =  (plants) => {
               alt="" />
           </figure>
           <div class="card-body p-0 mt-2 gap-2">
-            <h2 class="card-title text-base">${plant.name}</h2>
+            <h2 onclick="loadModelData(${plant.id})" class="card-title text-base cursor-pointer">${plant.name}</h2>
             <p class="text-sm">${plant.description}</p>
             <div class="flex justify-between">
               <div class="badge badge-soft badge-success bg-[#DCFCE7] text-[#15803D] rounded-xl font-semibold">${plant.category}</div>
@@ -64,7 +64,34 @@ const displayAllPlants =  (plants) => {
   })
 }
 
-//loadAllCardData();
+loadAllCardData();
+
+const loadModelData = id => {
+  const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+  fetch(url).then(res => res.json()).then(data => displayModal(data.plants));
+}
+
+const displayModal = plant => {
+  const modalContainer = document.getElementById('modal-container');
+  modalContainer.innerHTML = `
+    <div class="space-y-2">
+      <h3 class="text-lg font-bold">${plant.name}</h3>
+      <img class="w-full rounded-lg h-[210px] object-cover"
+        src="${plant.image}"
+        alt="" />
+      <p><span class="font-semibold">Category:</span> <span>${plant.category}</span></p>
+      <p><span class="font-semibold">Price:</span> ৳<span>${plant.price}</span></p>
+      <p><span class="font-semibold">Description:</span> <span>${plant.description}</span></p>
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  `;
+  document.getElementById('my_modal').showModal();
+}
 
 const loadBalanceData = (id) => {
   const url = `https://openapi.programming-hero.com/api/plant/${id}`;
@@ -124,7 +151,7 @@ const displayPlantCard = (plantData) => {
               alt="" />
           </figure>
           <div class="card-body p-0 mt-2 gap-2">
-            <h2 class="card-title text-base">${plant.name}</h2>
+            <h2 onclick="loadModelData(${plant.id})" class="card-title text-base cursor-pointer">${plant.name}</h2>
             <p class="text-sm">${plant.description}</p>
             <div class="flex justify-between">
               <div class="badge badge-soft badge-success bg-[#DCFCE7] text-[#15803D] rounded-xl font-semibold">${plant.category}</div>
